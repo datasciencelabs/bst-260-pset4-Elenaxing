@@ -272,7 +272,8 @@ deaths <- request(deaths_url) |>
   # ensure dates are in proper Date format and deaths are numeric
   mutate(date = as.Date(date), deaths = as.numeric(deaths)) |>  
   # keep rows where state is one of the 50 U.S. states, District of Columbia, or Puerto Rico
-  filter(state %in% c(state.name, "District of Columbia", "Puerto Rico")) 
+  filter(state %in% c(state.name, "District of Columbia", "Puerto Rico")) |> 
+  filter(!is.na(date), !is.na(state), !is.na(deaths))
 #deaths
 ```
 
